@@ -25,7 +25,7 @@ class OrderRepositoryR2dbcTests {
     @Container
 	static PostgreSQLContainer<?> postgresql = new PostgreSQLContainer<>(DockerImageName.parse("postgres:14.12"));
 
-    @Autowired
+	@Autowired
     private OrderRepository orderRepository;
 
     @DynamicPropertySource
@@ -37,7 +37,7 @@ class OrderRepositoryR2dbcTests {
     }
 
     private static String r2dbcUrl() {
-        return String.format("r2dbc:postgresql://%s:%s/%s", postgresql.getHost(),
+		return String.format("r2dbc:postgresql://%s:%s/%s", postgresql.getHost(),
                 postgresql.getMappedPort(PostgreSQLContainer.POSTGRESQL_PORT), postgresql.getDatabaseName());
     }
 
@@ -66,7 +66,7 @@ class OrderRepositoryR2dbcTests {
     }
 
     @Test
-    @WithMockUser("marlena")
+	@WithMockUser("marlena")
     void whenCreateOrderAuthenticatedThenAuditMetadata() {
         var rejectedOrder = OrderService.buildRejectedOrder( "1234567890", 3);
         StepVerifier.create(orderRepository.save(rejectedOrder))
