@@ -1,5 +1,6 @@
 package com.polarbookshop.orderservice.order.web;
 
+import com.polarbookshop.orderservice.config.SecurityConfig;
 import com.polarbookshop.orderservice.order.domain.Order;
 import com.polarbookshop.orderservice.order.domain.OrderService;
 import com.polarbookshop.orderservice.order.domain.OrderStatus;
@@ -9,19 +10,23 @@ import reactor.core.publisher.Mono;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.reactive.WebFluxTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.context.annotation.Import;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.test.web.reactive.server.SecurityMockServerConfigurers;
 import org.springframework.test.web.reactive.server.WebTestClient;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.BDDMockito.given;
 
 @WebFluxTest(OrderController.class)
+@Import(SecurityConfig.class)
 class OrderControllerWebFluxTests {
 
 	@Autowired
-	private WebTestClient webClient;
+	WebTestClient webClient;
 
 	@MockBean
-	private OrderService orderService;
+	OrderService orderService;
 
 	@Test
 	void whenBookNotAvailableThenRejectOrder() {
@@ -31,6 +36,8 @@ class OrderControllerWebFluxTests {
 				.willReturn(Mono.just(expectedOrder));
 
 		webClient
+				.mutateWith(SecurityMockServerConfigurers.mockJwt()
+						.authorities(new SimpleGrantedAuthority("ROLE_customer")))
 				.post()
 				.uri("/orders")
 				.bodyValue(orderRequest)
@@ -40,7 +47,6 @@ class OrderControllerWebFluxTests {
 					assertThat(actualOrder).isNotNull();
 					assertThat(actualOrder.status()).isEqualTo(OrderStatus.REJECTED);
 				});
-
 	}
 
 }
