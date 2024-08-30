@@ -13,7 +13,7 @@ spring:
   r2dbc:
     username: user
     password: password
-    url: r2dbc:postgresql://polar-postgres:80/polardb_order # PostgreSQL 서비스 이름으로 변경
+    url: r2dbc:postgresql://localhost:5432/polardb_order
     pool:
       max-create-connection-time: 2s
       initial-size: 5
@@ -21,12 +21,12 @@ spring:
   flyway:
     user: ${spring.r2dbc.username}
     password: ${spring.r2dbc.password}
-    url: jdbc:postgresql://polar-postgres:80/polardb_order # PostgreSQL 서비스 이름으로 변경
+    url: jdbc:postgresql://localhost:5432/polardb_order
   config:
     import: "optional:configserver:"
   cloud:
     config:
-      uri: http://config-service:80 # Config Server 서비스 이름으로 변경
+      uri: http://localhost:8888
       request-connect-timeout: 5000 # 5s
       request-read-timeout: 5000 # 5s
       fail-fast: false # In production, set to true
@@ -50,16 +50,11 @@ spring:
             producer:
               transacted: true
   rabbitmq:
-    host: polar-rabbitmq # RabbitMQ 서비스 이름으로 변경
+    host: localhost
     port: 5672
     username: user
     password: password
     connection-timeout: 5s
-  security:
-    oauth2:
-      resourceserver:
-        jwt:
-          issuer-uri: http://polar-keycloak:80/realms/PolarBookshop # Keycloak 서비스 이름으로 변경
 
 polar:
-  catalog-service-uri: "http://catalog-service:80" # Catalog 서비스 이름으로 변경
+  catalog-service-uri: "http://localhost:9001"
