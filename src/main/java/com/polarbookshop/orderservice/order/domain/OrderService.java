@@ -28,7 +28,7 @@ public class OrderService {
 		this.streamBridge = streamBridge;
 	}
 
-	public Flux<Order> getAllOrders(String userId) {
+	public Flux<Order> getAllOrders() {
 		return orderRepository.findAllByCreatedBy(userId);
 	}
 
