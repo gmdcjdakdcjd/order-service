@@ -4,9 +4,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.domain.ReactiveAuditorAware;
 import org.springframework.data.r2dbc.config.EnableR2dbcAuditing;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.ReactiveSecurityContextHolder;
-import org.springframework.security.core.context.SecurityContext;
+import reactor.core.publisher.Mono;
 
 @Configuration
 @EnableR2dbcAuditing
@@ -14,10 +12,8 @@ public class DataConfig {
 
 	@Bean
 	ReactiveAuditorAware<String> auditorAware() {
-		return () -> ReactiveSecurityContextHolder.getContext()
-				.map(SecurityContext::getAuthentication)
-				.filter(Authentication::isAuthenticated)
-				.map(Authentication::getName);
+		// 기본 사용자 이름 "system"으로 설정
+		return () -> Mono.just("system");
 	}
 
 }

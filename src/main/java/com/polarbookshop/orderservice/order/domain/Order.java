@@ -39,7 +39,8 @@ public record Order (
 ){
 
 	public static Order of(String bookIsbn, String bookName, Double bookPrice, Integer quantity, OrderStatus status) {
-		return new Order(null, bookIsbn, bookName, bookPrice, quantity, status, null, null, null, null, 0);
+		// createdBy와 lastModifiedBy 필드를 기본값으로 설정
+		return new Order(null, bookIsbn, bookName, bookPrice, quantity, status, null, null, "system", "system", 0);
 	}
 
 }

@@ -11,16 +11,12 @@ spring:
   lifecycle:
     timeout-per-shutdown-phase: 15s
   r2dbc:
-    username: user
-    password: password
     url: r2dbc:postgresql://polar-postgres:80/polardb_order # PostgreSQL 서비스 이름으로 변경
     pool:
       max-create-connection-time: 2s
       initial-size: 5
       max-size: 10
   flyway:
-    user: ${spring.r2dbc.username}
-    password: ${spring.r2dbc.password}
     url: jdbc:postgresql://polar-postgres:80/polardb_order # PostgreSQL 서비스 이름으로 변경
   config:
     import: "optional:configserver:"
@@ -52,14 +48,8 @@ spring:
   rabbitmq:
     host: polar-rabbitmq # RabbitMQ 서비스 이름으로 변경
     port: 5672
-    username: user
-    password: password
     connection-timeout: 5s
-  security:
-    oauth2:
-      resourceserver:
-        jwt:
-          issuer-uri: http://polar-keycloak:80/realms/PolarBookshop # Keycloak 서비스 이름으로 변경
+    # username과 password 필드를 제거하여 인증 없이 연결 가능하게 설정
 
 polar:
   catalog-service-uri: "http://catalog-service:80" # Catalog 서비스 이름으로 변경
