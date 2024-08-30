@@ -35,6 +35,4 @@ spec:
               value: r2dbc:postgresql://polar-postgres/polardb_order
             - name: SPRING_FLYWAY_URL
               value: jdbc:postgresql://polar-postgres/polardb_order
-            # 인증 관련 환경 변수 제거 (주석 처리)
-            # - name: SPRING_SECURITY_OAUTH2_RESOURCESERVER_JWT_ISSUER_URI
-            #   value: http://polar-keycloak/realms/PolarBookshop
+            # SPRING_SECURITY_OAUTH2_RESOURCESERVER_JWT_ISSUER_URI 제거

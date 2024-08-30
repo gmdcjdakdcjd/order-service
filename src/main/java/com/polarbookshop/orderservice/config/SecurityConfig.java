@@ -1,5 +1,5 @@
-package com.polarbookshop.orderservice.config;
-
+//package com.polarbookshop.orderservice.config;
+//
 //import org.springframework.context.annotation.Bean;
 //import org.springframework.context.annotation.Configuration;
 //import org.springframework.security.config.Customizer;

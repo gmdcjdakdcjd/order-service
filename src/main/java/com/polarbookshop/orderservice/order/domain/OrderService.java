@@ -28,9 +28,8 @@ public class OrderService {
 		this.streamBridge = streamBridge;
 	}
 
-	// 모든 주문을 반환합니다.
-	public Flux<Order> getAllOrders() {
-		return orderRepository.findAll();
+	public Flux<Order> getAllOrders(String userId) {
+		return orderRepository.findAllByCreatedBy(userId);
 	}
 
 	@Transactional
@@ -83,4 +82,5 @@ public class OrderService {
 				existingOrder.version()
 		);
 	}
+
 }

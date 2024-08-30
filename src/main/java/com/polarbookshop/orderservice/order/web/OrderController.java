@@ -19,22 +19,18 @@ public class OrderController {
 
 	private final OrderService orderService;
 
-	// 생성자를 통해 OrderService를 주입받습니다.
 	public OrderController(OrderService orderService) {
 		this.orderService = orderService;
 	}
 
-	// GET /orders - 모든 주문을 조회합니다.
 	@GetMapping
 	public Flux<Order> getAllOrders() {
-		// 모든 주문을 반환합니다. 인증 정보는 사용하지 않습니다.
-		return orderService.getAllOrders();
+		// 인증이 제거된 상태에서 모든 주문을 가져오도록 변경
+		return orderService.getAllOrders("system");
 	}
 
-	// POST /orders - 새 주문을 제출합니다.
 	@PostMapping
 	public Mono<Order> submitOrder(@RequestBody @Valid OrderRequest orderRequest) {
-		// 주문 요청을 받아서 새로운 주문을 제출합니다.
 		return orderService.submitOrder(orderRequest.isbn(), orderRequest.quantity());
 	}
 

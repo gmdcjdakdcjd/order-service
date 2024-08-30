@@ -21,4 +21,6 @@ public class OrderFunctions {
 				.doOnNext(order -> log.info("The order with id {} is dispatched", order.id()))
 				.subscribe();
 	}
+
 }
+
