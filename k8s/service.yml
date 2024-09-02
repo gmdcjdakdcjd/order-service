@@ -4,11 +4,16 @@ metadata:
   name: order-service
   labels:
     app: order-service
+    service: order-service
+    version: order
 spec:
   type: ClusterIP
   selector:
     app: order-service
+    service: order-service
+    version: order
   ports:
-  - protocol: TCP
-    port: 80
-    targetPort: 9002
+    - protocol: TCP
+      port: 80
+      name: tcp
+      targetPort: 9002
