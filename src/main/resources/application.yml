@@ -61,6 +61,17 @@ spring:
         jwt:
           issuer-uri: http://adb036ff5c06344c0aec6be4b15350c8-386055155.ap-southeast-2.elb.amazonaws.com/realms/PolarBookshop
 #          issuer-uri: http://polar-keycloak:80/realms/PolarBookshop # Keycloak 서비스 이름 사용
+  # Zipkin 설정 추가
+  sleuth:
+    sampler:
+      probability: 1.0 # 모든 요청을 샘플링 (프로덕션 환경에서는 이 값을 낮출 수 있습니다)
+  zipkin:
+    base-url: http://zipkin-service:80 # Zipkin 서버의 URL을 설정합니다
+    sender:
+      type: web # HTTP를 통해 Zipkin에 데이터를 전송합니다
+
 
 polar:
   catalog-service-uri: "http://catalog-service:80" # Catalog 서비스 이름으로 변경
+
+
