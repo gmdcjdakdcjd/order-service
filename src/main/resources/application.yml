@@ -59,7 +59,7 @@ spring:
     oauth2:
       resourceserver:
         jwt:
-          issuer-uri: http://abd51a0238f99428382c93555ca43fc5-1208788426.ap-southeast-2.elb.amazonaws.com/realms/PolarBookshop
+          issuer-uri: http://a1ac45fb8469c4e908fa127aa8d0aeee-1889420468.ap-northeast-2.elb.amazonaws.com/realms/PolarBookshop
 #          issuer-uri: http://polar-keycloak:80/realms/PolarBookshop # Keycloak 서비스 이름 사용
 
 polar:
