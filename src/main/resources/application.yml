@@ -11,9 +11,9 @@ spring:
   lifecycle:
     timeout-per-shutdown-phase: 15s
   r2dbc:
-    username: user
+    username: admin1234
     password: password
-    url: r2dbc:postgresql://polar-postgres:80/polardb_order # PostgreSQL 서비스 이름으로 변경
+    url: r2dbc:postgresql://fullaccel-rds-cluster.cluster-crkyqs82uv8y.ap-northeast-2.rds.amazonaws.com:5432/polardb_order # PostgreSQL 서비스 이름으로 변경
     pool:
       max-create-connection-time: 2s
       initial-size: 5
@@ -21,7 +21,7 @@ spring:
   flyway:
     user: ${spring.r2dbc.username}
     password: ${spring.r2dbc.password}
-    url: jdbc:postgresql://polar-postgres:80/polardb_order # PostgreSQL 서비스 이름으로 변경
+    url: jdbc:postgresql://fullaccel-rds-cluster.cluster-crkyqs82uv8y.ap-northeast-2.rds.amazonaws.com:5432/polardb_order # PostgreSQL 서비스 이름으로 변경
   config:
     import: "optional:configserver:"
   cloud:
