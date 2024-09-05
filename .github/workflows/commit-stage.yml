@@ -4,7 +4,7 @@ on: push
 env:
   REGISTRY: ghcr.io
   IMAGE_NAME: gmdcjdakdcjd/order-service
-  VERSION: v4
+  VERSION: v8
 
 jobs:
   build:
