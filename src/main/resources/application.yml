@@ -19,6 +19,7 @@ spring:
       initial-size: 5
       max-size: 10
   flyway:
+    baseline-on-migrate: true
     user: ${spring.r2dbc.username}
     password: ${spring.r2dbc.password}
     url: jdbc:postgresql://fullaccel-rds-instance-1.crkyqs82uv8y.ap-northeast-2.rds.amazonaws.com:5432/polardb_order # PostgreSQL 서비스 이름으로 변경
